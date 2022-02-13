@@ -1,6 +1,6 @@
-# Commons Language
+# root-pom
  
-Java language commons.
+Parent POM for all of my Java projects.
 
 ## License
 
