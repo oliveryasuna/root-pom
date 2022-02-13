@@ -224,37 +224,28 @@
                 <configuration>
                   <rules>
                     <requireProperty>
-                      <property>name</property>
+                      <property>project.name</property>
+                      <message>Missing project.name.</message>
                     </requireProperty>
                     <requireProperty>
-                      <property>description</property>
+                      <property>project.description</property>
+                      <message>Missing project.description.</message>
                     </requireProperty>
                     <requireProperty>
-                      <property>url</property>
+                      <property>project.url</property>
+                      <message>Missing project.url.</message>
                     </requireProperty>
                     <requireProperty>
-                      <property>licenses</property>
+                      <property>project.licenses</property>
+                      <message>Missing project.licenses.</message>
                     </requireProperty>
                     <requireProperty>
-                      <property>licenses.license</property>
+                      <property>project.developers</property>
+                      <message>Missing project.developers.</message>
                     </requireProperty>
                     <requireProperty>
-                      <property>developers</property>
-                    </requireProperty>
-                    <requireProperty>
-                      <property>developers.developer</property>
-                    </requireProperty>
-                    <requireProperty>
-                      <property>scm</property>
-                    </requireProperty>
-                    <requireProperty>
-                      <property>scm.url</property>
-                    </requireProperty>
-                    <requireProperty>
-                      <property>scm.connection</property>
-                    </requireProperty>
-                    <requireProperty>
-                      <property>scm.developerConnection</property>
+                      <property>project.scm</property>
+                      <message>Missing project.scm.</message>
                     </requireProperty>
                   </rules>
                 </configuration>
