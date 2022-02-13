@@ -1,0 +1,382 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ~ Copyright 2022 Oliver Yasuna
+  ~
+  ~ Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
+  ~
+  ~ 1. Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer.
+  ~ 2. Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation
+  ~     and/or other materials provided with the distribution.
+  ~ 3. Neither the name of the copyright holder nor the names of its contributors may be used to endorse or promote products derived from this software without
+  ~      specific prior written permission.
+  ~
+  ~ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+  ~ IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
+  ~ FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+  ~ SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR
+  ~ TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+  -->
+
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+  <modelVersion>4.0.0</modelVersion>
+
+  <!--==================================================
+  ==== Core
+  ==================================================-->
+
+  <groupId>com.oliveryasuna</groupId>
+  <artifactId>root-pom</artifactId>
+  <version>1.0.0</version>
+  <packaging>pom</packaging>
+
+  <modules/>
+
+  <properties/>
+
+  <dependencyManagement/>
+
+  <dependencies/>
+
+  <!--==================================================
+  ==== Build
+  ==================================================-->
+
+  <build/>
+
+  <reporting/>
+
+  <!--==================================================
+  ==== Details
+  ==================================================-->
+
+  <name>Root POM</name>
+  <description>Parent POM for all of my projects.</description>
+  <url>https://github.com/oliveryasuna/root-pom</url>
+  <inceptionYear>2022</inceptionYear>
+  <licenses>
+    <license>
+      <name>BSD 3-Clause</name>
+      <url>https://opensource.org/licenses/BSD-3-Clause</url>
+      <comments>Copyright 2021 Oliver Yasuna</comments>
+      <distribution>repo</distribution>
+    </license>
+  </licenses>
+  <organization>
+    <name>Oliver Yasuna</name>
+    <url>https://oliveryasuna.github.io/</url>
+  </organization>
+  <developers>
+    <developer>
+      <id>oliver-yasuna</id>
+
+      <name>Oliver Yasuna</name>
+      <url>https://oliveryasuna.github.io/</url>
+
+      <roles>
+        <role>lead</role>
+        <role>developer</role>
+      </roles>
+
+      <timezone>America/New_York</timezone>
+    </developer>
+  </developers>
+  <contributors/>
+
+  <!--==================================================
+  ==== Environment
+  ==================================================-->
+
+  <issueManagement>
+    <system>GitHub</system>
+    <url>https://github.com/oliveryasuna/root-pom/issues</url>
+  </issueManagement>
+  <ciManagement/>
+
+  <mailingLists/>
+
+  <scm>
+    <url>https://github.com/oliveryasuna/root-pom</url>
+    <connection>scm:git:git://github.com/oliveryasuna/root-pom.git</connection>
+    <developerConnection>scm:git:git://github.com/oliveryasuna/root-pom.git</developerConnection>
+  </scm>
+
+  <repositories/>
+  <pluginRepositories/>
+
+  <distributionManagement/>
+
+  <profiles>
+    <profile>
+      <id>no-duplicate-dependencies</id>
+
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-enforcer-plugin</artifactId>
+            <version>3.0.0-M3</version>
+
+            <executions>
+              <execution>
+                <id>no-duplicate-dependencies</id>
+
+                <goals>
+                  <goal>enforce</goal>
+                </goals>
+
+                <configuration>
+                  <rules>
+                    <banDuplicatePomDependencyVersions/>
+                  </rules>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+
+    <profile>
+      <id>package-sources</id>
+
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-source-plugin</artifactId>
+            <version>3.2.1</version>
+
+            <executions>
+              <execution>
+                <id>attach-sources</id>
+
+                <goals>
+                  <goal>jar-no-fork</goal>
+                </goals>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+
+    <profile>
+      <id>package-javadocs</id>
+
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-javadoc-plugin</artifactId>
+            <version>3.3.0</version>
+
+            <executions>
+              <execution>
+                <id>attach-javadocs</id>
+
+                <goals>
+                  <goal>jar</goal>
+                </goals>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+
+    <profile>
+      <id>release-nexus</id>
+
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-enforcer-plugin</artifactId>
+            <version>3.0.0-M3</version>
+
+            <executions>
+              <execution>
+                <id>require-active-profiles</id>
+
+                <goals>
+                  <goal>enforce</goal>
+                </goals>
+
+                <configuration>
+                  <rules>
+                    <requireActiveProfile>
+                      <profiles>package-sources,package-javadocs</profiles>
+                    </requireActiveProfile>
+                  </rules>
+                </configuration>
+              </execution>
+
+              <execution>
+                <id>require-properties</id>
+
+                <goals>
+                  <goal>enforce</goal>
+                </goals>
+
+                <configuration>
+                  <rules>
+                    <requireProperty>
+                      <property>name</property>
+                    </requireProperty>
+                    <requireProperty>
+                      <property>description</property>
+                    </requireProperty>
+                    <requireProperty>
+                      <property>url</property>
+                    </requireProperty>
+                    <requireProperty>
+                      <property>licenses</property>
+                    </requireProperty>
+                    <requireProperty>
+                      <property>licenses.license</property>
+                    </requireProperty>
+                    <requireProperty>
+                      <property>developers</property>
+                    </requireProperty>
+                    <requireProperty>
+                      <property>developers.developer</property>
+                    </requireProperty>
+                    <requireProperty>
+                      <property>scm</property>
+                    </requireProperty>
+                    <requireProperty>
+                      <property>scm.url</property>
+                    </requireProperty>
+                    <requireProperty>
+                      <property>scm.connection</property>
+                    </requireProperty>
+                    <requireProperty>
+                      <property>scm.developerConnection</property>
+                    </requireProperty>
+                  </rules>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+
+          <plugin>
+            <groupId>org.sonatype.plugins</groupId>
+            <artifactId>nexus-staging-maven-plugin</artifactId>
+            <version>1.6.7</version>
+
+            <extensions>true</extensions>
+
+            <configuration>
+              <serverId>ossrh</serverId>
+              <nexusUrl>https://s01.oss.sonatype.org/</nexusUrl>
+              <skipStagingRepositoryClose>true</skipStagingRepositoryClose>
+              <autoReleaseAfterClose>false</autoReleaseAfterClose>
+            </configuration>
+          </plugin>
+
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-gpg-plugin</artifactId>
+            <version>3.0.1</version>
+
+            <executions>
+              <execution>
+                <id>sign-artifacts</id>
+
+                <phase>verify</phase>
+
+                <goals>
+                  <goal>sign</goal>
+                </goals>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+
+      <distributionManagement>
+        <repository>
+          <id>ossrh</id>
+          <url>https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+        </repository>
+
+        <snapshotRepository>
+          <id>ossrh</id>
+
+          <url>https://s01.oss.sonatype.org/content/repositories/snapshots</url>
+        </snapshotRepository>
+      </distributionManagement>
+    </profile>
+
+    <profile>
+      <id>strict-javadocs</id>
+
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-javadoc-plugin</artifactId>
+            <version>3.3.0</version>
+
+            <configuration>
+              <doclint>all</doclint>
+            </configuration>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+
+    <!--
+    <pre><code class="java">{@code
+      ...
+    }</code></pre>
+    -->
+    <profile>
+      <id>highlight.js-in-javadocs</id>
+
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-javadoc-plugin</artifactId>
+            <version>3.3.0</version>
+
+            <configuration>
+              <additionalOptions>-html5 --allow-script-in-comments</additionalOptions>
+              <header><![CDATA[
+                  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/styles/vs.min.css">
+                  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/highlight.min.js"></script>
+                  <script type="text/javascript">hljs.initHighlightingOnLoad();</script>
+              ]]></header>
+            </configuration>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+
+    <profile>
+      <id>mathjax-in-javadocs</id>
+
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-javadoc-plugin</artifactId>
+            <version>3.3.0</version>
+
+            <configuration>
+              <additionalOptions>-html5 --allow-script-in-comments</additionalOptions>
+              <header><![CDATA[
+                  <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+              ]]></header>
+            </configuration>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+  </profiles>
+
+</project>
