@@ -177,6 +177,26 @@
               <execution>
                 <id>attach-javadocs</id>
 
+                <configuration>
+                  <tags>
+                    <tag>
+                      <name>apiNote</name>
+                      <placement>a</placement>
+                      <head>API Note:</head>
+                    </tag>
+                    <tag>
+                      <name>implSpec</name>
+                      <placement>a</placement>
+                      <head>Implementation Requirements:</head>
+                    </tag>
+                    <tag>
+                      <name>implNote</name>
+                      <placement>a</placement>
+                      <head>Implementation Note:</head>
+                    </tag>
+                  </tags>
+                </configuration>
+
                 <goals>
                   <goal>jar</goal>
                 </goals>
@@ -198,7 +218,7 @@
             <version>3.0.0-M3</version>
 
             <executions>
-              <execution>
+              <!--<execution>
                 <id>require-active-profiles</id>
 
                 <goals>
@@ -212,7 +232,7 @@
                     </requireActiveProfile>
                   </rules>
                 </configuration>
-              </execution>
+              </execution>-->
 
               <execution>
                 <id>require-properties</id>
